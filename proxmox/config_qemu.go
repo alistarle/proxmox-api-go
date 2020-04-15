@@ -796,7 +796,6 @@ func (c ConfigQemu) CreateQemuNetworksParams(vmID int, params map[string]interfa
 		if nicConfMap["macaddr"] == nil || nicConfMap["macaddr"].(string) == "" {
 			// Generate Mac based on VmID and NicID so it will be the same always.
 			macaddr := make(net.HardwareAddr, 6)
-			rand.Seed(time.Now().UnixNano())
 			rand.Read(macaddr)
 			macaddr[0] = (macaddr[0] | 2) & 0xfe // fix from github issue #18
 			macAddrUppr := strings.ToUpper(fmt.Sprintf("%v", macaddr))

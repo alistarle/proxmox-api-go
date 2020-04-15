@@ -8,8 +8,10 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"math/rand"
+	"time"
 
-	"github.com/Telmate/proxmox-api-go/proxmox"
+	"github.com/alistarle/proxmox-api-go/proxmox"
 )
 
 func main() {
@@ -19,6 +21,7 @@ func main() {
 	fvmid := flag.Int("vmid", -1, "custom vmid (instead of auto)")
 	flag.Parse()
 	tlsconf := &tls.Config{InsecureSkipVerify: true}
+	rand.Seed(time.Now().UnixNano())
 	if !*insecure {
 		tlsconf = nil
 	}
